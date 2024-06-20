@@ -1,0 +1,41 @@
+Name: Han Tun
+Email: xha98@sfu.ca
+
+###############################################################################################################
+> ### You will notice that often the time limit set at GUI is surpassed in runtime. Why do you think it is? ###
+> #############################################################################################################
+
+1. The actual runtime can be affected by the computer processing power (cpu) and RAM (I was experienceing lags in my computer 
+if I pust in a large number for the timer or iteration depth). 
+
+2. The program only checks the elapsed time at certain intervals or some point of the code (currently only in part of the APHA_BETA_PLAYER() and MINMAX_PLAYER() functions)  If these checks are not 
+frequent in the code (especially in iterations - iterative depending), the algorithm can end up running longer than the set time limit without knowing the time has passed. 
+-> Iterative deepening will complete the current depth iteration before terminating or checking if the time runned out.
+
+4. For larger tic-tac-toe grid games (4x4, 5x5,...), the algorithms may require more time to process all possible outcomes, 
+leading to the time limit being surpassed.
+##############################################################################################################
+
+
+
+
+##############################################################################################################
+> ### Any suggestion how to remedy that so we can have a time limit that is respected by the runtime? ###    
+> ############################################################################################################
+
+1. Check the elapsed time more often during the algorithm's execution to ensure it stops as soon as the time limit is reached.
+> put [ game.terminal_test(state): ] more frequently in each function. It might also be better to check the elapsed time at 
+each step of the iterative deepening. 
+Instead of checking time only at the beginning or end of a search, integrate checks into points such 
+as after evaluating each potential move or after a certain number of nodes expanded.
+
+2. Make a (Asynchronous Execution) function that will process separately/independently to check the time (for the whole the 
+runtime) and will interrupt or stop the processing of the algorithms once the time limit is exceeded.
+
+3. Adjusting the depth of search based on the remaining time -> If time is available, increase the depth to explore deeper into 
+the game tree. Conversely, reduce the depth if time is limited to ensure completion within the constraint. OR  Implement 
+iterative deepening with progressive deepening and time-bound cutoffs. 
+##############################################################################################################
+
+
+(Monte carlo has best decisions within time limit)
